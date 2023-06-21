@@ -1,8 +1,11 @@
 module "aks-rancher" {
   source = "../../modules/aks-rancher"
 
-  azure_location        = var.azure_location
-  azure_resource_suffix = var.azure_resource_suffix
+  azure_location   = var.azure_location
+  resource_suffix  = var.azure_resource_suffix
+  node_count       = var.aks_node_count
+  azure_vm_size    = var.azure_vm_size
+  environment_name = var.environment_name
 }
 
 variable "azure_location" {
@@ -17,12 +20,30 @@ variable "azure_resource_suffix" {
   default     = "sample-12345"
 }
 
-output "client_certificate" {
+variable "aks_node_count" {
+  description = "Number of AKS workder nodes"
+  type        = number
+  default     = 1
+}
+
+variable "azure_vm_size" {
+  description = "Size of Azure Virtual Machines"
+  type        = string
+  default     = "Standard_D2_v2"
+}
+
+variable "environment_name" {
+  description = "Size of Azure Virtual Machines"
+  type        = string
+  default     = "Production"
+}
+
+output "aks_client_certificate" {
   value     = module.aks-rancher.client_certificate
   sensitive = true
 }
 
-output "kube_config" {
+output "aks_kube_config" {
   value     = module.aks-rancher.kube_config
   sensitive = true
 }

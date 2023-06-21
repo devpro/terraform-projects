@@ -1,18 +1,24 @@
 resource "azurerm_resource_group" "management" {
-  name     = "rg-${var.azure_resource_suffix}"
+  name     = "rg-${var.resource_suffix}"
   location = var.azure_location
+
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
 }
 
 resource "azurerm_kubernetes_cluster" "management" {
-  name                = "aks-${var.azure_resource_suffix}"
+  name                = "aks-${var.resource_suffix}"
   location            = azurerm_resource_group.management.location
   resource_group_name = azurerm_resource_group.management.name
-  dns_prefix          = "dns-${var.azure_resource_suffix}"
+  dns_prefix          = "dns-${var.resource_suffix}"
 
   default_node_pool {
     name       = "default"
-    node_count = 1
-    vm_size    = "Standard_D2_v2"
+    node_count = var.node_count
+    vm_size    = var.azure_vm_size
   }
 
   identity {
@@ -20,6 +26,15 @@ resource "azurerm_kubernetes_cluster" "management" {
   }
 
   tags = {
-    Environment = "Production"
+    Environment = var.environment_name
+  }
+
+  lifecycle {
+    # limitation: has to be a static list expression (see https://github.com/hashicorp/terraform/issues/22544), cannot be read from variable
+    ignore_changes = [
+      tags
+      # tags.field1
+      # tags["Field 1"]
+    ]
   }
 }

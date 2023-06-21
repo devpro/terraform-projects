@@ -4,7 +4,7 @@ terraform {
   required_providers {
     # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "3.61.0"
     }
   }
