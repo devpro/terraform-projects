@@ -14,16 +14,7 @@ Name                    | Required | Reason
 ------------------------|----------|---------------------------------------------
 `azure_location`        | False    | Azure data center location for the resources
 `azure_resource_suffix` | False    | Suffix used in Azure resources
+`aks_node_count`        | False    | Number of AKS worker nodes
+`azure_vm_size`         | False    | Azure Virtual Machine size
 
-* Execute Terraform commands
-
-```bash
-# Initialize local Terraform folder
-terraform init
-
-# Create and manage resources
-terraform apply
-
-# Delete resources
-terraform destroy
-```
+* [Execute Terraform commands](../../docs/terraform-cli.md#run-commands)

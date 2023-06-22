@@ -18,9 +18,10 @@ variable "azure_vm_size" {
   type        = string
 }
 
-variable "environment_name" {
-  description = "Environment name (set as Tag)"
-  type        = string
+variable "resource_tags" {
+  description = "List of tags (key => value) to create on resources"
+  type        = map(string)
+  default     = {}
 }
 
 # variable "tags_to_ignore" {

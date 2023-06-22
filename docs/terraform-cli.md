@@ -15,3 +15,19 @@ For Windows systems:
 ```bat
 set TF_LOG="TRACE"
 ```
+
+## Run commands
+
+```bash
+# initializes local Terraform folder
+terraform init
+
+# displays changes that are identified
+terraform plan
+
+# creates and updates resources
+terraform apply -auto-approve
+
+# deletes resources
+terraform destroy
+```

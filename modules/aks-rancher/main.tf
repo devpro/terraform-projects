@@ -14,6 +14,7 @@ resource "azurerm_kubernetes_cluster" "management" {
   location            = azurerm_resource_group.management.location
   resource_group_name = azurerm_resource_group.management.name
   dns_prefix          = "dns-${var.resource_suffix}"
+  tags                = var.resource_tags
 
   default_node_pool {
     name       = "default"
@@ -25,14 +26,9 @@ resource "azurerm_kubernetes_cluster" "management" {
     type = "SystemAssigned"
   }
 
-  tags = {
-    Environment = var.environment_name
-  }
-
   lifecycle {
     # limitation: has to be a static list expression (see https://github.com/hashicorp/terraform/issues/22544), cannot be read from variable
     ignore_changes = [
-      tags
       # tags.field1
       # tags["Field 1"]
     ]

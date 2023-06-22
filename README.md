@@ -6,10 +6,10 @@ Infrastructure automation projects leveraging [Terraform](https://www.terraform.
 
 ## Modules
 
-Name                                         | Reason
----------------------------------------------|------------------------------------------------
-[aks-rancher](modules/aks-rancher/README.md) | Create an AKS cluster and install Rancher on it
+* [aks-rancher](modules/aks-rancher/README.md)
 
 ## Examples
 
-TODO
+Name                                          | Reason
+----------------------------------------------|------------------------------------------------
+[aks-rancher](examples/aks-rancher/README.md) | Create an AKS cluster and install Rancher on it

@@ -5,7 +5,6 @@ module "aks-rancher" {
   resource_suffix  = var.azure_resource_suffix
   node_count       = var.aks_node_count
   azure_vm_size    = var.azure_vm_size
-  environment_name = var.environment_name
 }
 
 variable "azure_location" {
@@ -30,12 +29,6 @@ variable "azure_vm_size" {
   description = "Size of Azure Virtual Machines"
   type        = string
   default     = "Standard_D2_v2"
-}
-
-variable "environment_name" {
-  description = "Size of Azure Virtual Machines"
-  type        = string
-  default     = "Production"
 }
 
 output "aks_client_certificate" {
