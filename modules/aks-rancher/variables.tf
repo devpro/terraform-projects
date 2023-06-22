@@ -29,3 +29,9 @@ variable "resource_tags" {
 #   type        = list(string)
 #   default     = ["Cost Center", "Department", "Finance Business Partner", "General Ledger Code", "Group", "Owner", "Stakeholder"]
 # }
+
+variable "cert_manager_version" {
+  description = "Version of cert-manager to install on the cluster (mandatory for Rancher)"
+  type        = string
+  default     = "1.11.0"
+}
