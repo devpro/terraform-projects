@@ -41,12 +41,11 @@ module "aks-rancher" {
   azure_vm_size   = var.azure_vm_size
 }
 
-output "aks_client_certificate" {
-  value     = module.aks-rancher.client_certificate
-  sensitive = true
-}
-
 output "aks_kube_config" {
   value     = module.aks-rancher.kube_config
   sensitive = true
+}
+
+output "rancher_host" {
+  value = module.aks-rancher.rancher_host
 }

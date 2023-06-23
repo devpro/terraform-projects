@@ -49,4 +49,5 @@ See also [terraform-best-practices.com](https://www.terraform-best-practices.com
 
 ### Additional tools
 
-* [Terragrunt](https://terragrunt.gruntwork.io/)
+* [terraform-docs](https://terraform-docs.io/)
+* [Terragrunt](https://terragrunt.gruntwork.io/) ([code](https://github.com/terraform-docs/terraform-docs))

@@ -18,3 +18,5 @@ Name                    | Required | Reason
 `azure_vm_size`         | False    | Azure Virtual Machine size
 
 * [Execute Terraform commands](../../docs/terraform-cli.md#run-commands)
+
+* Open Rancher (the host is given as Terraform output)

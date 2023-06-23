@@ -35,3 +35,9 @@ variable "cert_manager_version" {
   type        = string
   default     = "1.11.0"
 }
+
+variable "rancher_version" {
+  description = "Version of rancher to install on the cluster"
+  type        = string
+  default     = "2.7.4"
+}
