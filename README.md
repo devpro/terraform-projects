@@ -2,7 +2,7 @@
 
 Infrastructure automation projects leveraging [Terraform](https://www.terraform.io/).
 
-💡 Any help will be appreciated! See [how you can contribute](CONTRIBUTING.md).
+💡 See [how you can contribute](CONTRIBUTING.md). Any help will be appreciated!
 
 ## Modules
 

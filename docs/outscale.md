@@ -19,3 +19,11 @@ set OUTSCALE_ACCESSKEYID="XXXXXXXXXXXXXXXXXX"
 set OUTSCALE_SECRETKEYID="YYYYYYYYYYYYYYYYYYYYYYYY"
 set OUTSCALE_REGION="eu-west-2"
 ```
+
+## Debug
+
+* Connect to a VM
+
+```bash
+ssh -i id_rsa outscale@<public_ip>
+```
