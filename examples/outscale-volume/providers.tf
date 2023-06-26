@@ -10,10 +10,3 @@ terraform {
 
 provider "outscale" {
 }
-
-resource "outscale_volume" "my_data" {
-  subregion_name = "eu-west-2a"
-  volume_type    = "io1"
-  iops           = 10000
-  size           = 200
-}
