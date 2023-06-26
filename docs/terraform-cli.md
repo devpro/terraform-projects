@@ -16,6 +16,13 @@ For Windows systems:
 set TF_LOG="TRACE"
 ```
 
+## Build commands
+
+```bash
+# formats code
+terraform fmt
+```
+
 ## Run commands
 
 ```bash

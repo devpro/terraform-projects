@@ -13,3 +13,4 @@ Infrastructure automation projects leveraging [Terraform](https://www.terraform.
 Name                                          | Reason
 ----------------------------------------------|------------------------------------------------
 [aks-rancher](examples/aks-rancher/README.md) | Create an AKS cluster and install Rancher on it
+[outscale-vm](examples/outscale-vm/README.md) | Create Virtual Machines on Outscale Cloud
