@@ -1,14 +1,14 @@
-# AKS with Rancher
+# AKS (Azure Kubernetes Service) with Rancher
 
-Create an Azure Kubernetes Service (Kubernetes cluster managed by Azure) and install Rancher on it.
+This project will create a Kubernetes cluster managed by Azure and install Rancher on it.
 
 ## How to use
 
 * If not already done, [create a service principal in Azure AD](../../docs/azure.md#create-a-service-principal)
 
-* [Set ARM (Azure Resource Manager) environment variables](../../docs/azure.md#set-arm-environment-variables)
+* [Configure ARM (Azure Resource Manager) provider](../../docs/azure.md#set-arm-environment-variables)
 
-* Set the Terraform variables (by creating a file `terraform.tfvars` for example)
+* [Set Terraform input variables](../../docs/terraform-cli.md#configure-input-variables)
 
 Name                    | Required | Reason
 ------------------------|----------|---------------------------------------------
@@ -17,6 +17,6 @@ Name                    | Required | Reason
 `aks_node_count`        | False    | Number of AKS worker nodes
 `azure_vm_size`         | False    | Azure Virtual Machine size
 
-* [Execute Terraform commands](../../docs/terraform-cli.md#run-commands)
+* [Run Terraform commands](../../docs/terraform-cli.md#run-commands)
 
 * Open Rancher (the host is given as Terraform output)

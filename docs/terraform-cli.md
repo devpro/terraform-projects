@@ -16,6 +16,15 @@ For Windows systems:
 set TF_LOG="TRACE"
 ```
 
+## Configure input variables
+
+Terraform will look at different places to read the [input variables](https://developer.hashicorp.com/terraform/language/values/variables).
+
+* Command line
+* Definition file
+  * Create a file `terraform.tfvars`
+* Environment variables
+
 ## Build commands
 
 ```bash
