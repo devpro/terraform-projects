@@ -7,6 +7,8 @@ Infrastructure automation projects leveraging [Terraform](https://www.terraform.
 ## Modules
 
 * [aks-rancher](modules/aks-rancher/README.md)
+* [helm-rancher](modules/helm-rancher/README.md)
+* [outscale-k3s](modules/outscale-k3s/README.md)
 
 ## Examples
 
