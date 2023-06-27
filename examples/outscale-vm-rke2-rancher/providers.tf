@@ -29,18 +29,18 @@ provider "outscale" {
 
 provider "rancher2" {
   alias     = "bootstrap"
-  api_url   = join(".", ["https://rancher", module.outscale_k3s.k3s_node_public_ip , "sslip.io"])
+  api_url   = join(".", ["https://rancher", module.outscale_k3s.k3s_node_public_ip, "sslip.io"])
   insecure  = true
   bootstrap = true
 }
 
-# provider "rancher2" {
-#   alias     = "admin"
-#   api_url   = join(".", ["https://rancher", module.outscale_k3s.k3s_node_public_ip , "sslip.io"])
-#   insecure  = true
-#   token_key = rancher2_bootstrap.admin.token
-#   timeout   = "300s"
-# }
+provider "rancher2" {
+  alias     = "admin"
+  api_url   = join(".", ["https://rancher", module.outscale_k3s.k3s_node_public_ip, "sslip.io"])
+  insecure  = true
+  token_key = module.helm_rancher.rancher_bootstrap_admin_token
+  timeout   = "300s"
+}
 
 provider "tls" {
 }

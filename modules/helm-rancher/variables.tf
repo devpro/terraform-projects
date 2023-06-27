@@ -15,6 +15,11 @@ variable "rancher_helm_repository" {
   default     = "https://releases.rancher.com/server-charts/latest"
 }
 
+variable "rancher_server_dns" {
+  type        = string
+  description = "DNS host name of the Rancher server"
+}
+
 variable "rancher_version" {
   type        = string
   description = "Rancher server version (format v0.0.0)"

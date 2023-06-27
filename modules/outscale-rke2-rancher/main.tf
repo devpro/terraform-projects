@@ -1,3 +1,4 @@
+# creates RKE2 cluster (ref. https://registry.terraform.io/providers/rancher/rancher2/latest/docs/resources/cluster_v2)
 resource "rancher2_cluster_v2" "quickstart_workload" {
   provider           = rancher2.admin
   name               = var.workload_cluster_name

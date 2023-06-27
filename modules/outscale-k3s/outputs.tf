@@ -1,4 +1,4 @@
-# TODO: is empty
+# TODO: understand why it is empty
 output "install_k3s_output" {
   value       = try(jsondecode(ssh_resource.install_k3s.result), {})
   description = "Output of the k3s installation output"

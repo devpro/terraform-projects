@@ -43,8 +43,8 @@ resource "helm_release" "rancher_server" {
   depends_on = [helm_release.cert_manager]
 }
 
+# https://registry.terraform.io/providers/rancher/rancher2/latest/docs/resources/bootstrap
 resource "rancher2_bootstrap" "admin" {
-  provider  = rancher2.bootstrap
   password  = var.admin_password
   telemetry = true
 
