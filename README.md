@@ -10,7 +10,8 @@ Infrastructure automation projects leveraging [Terraform](https://www.terraform.
 
 ## Examples
 
-Name                                                  | Reason
-------------------------------------------------------|------------------------------------------------
-[aks-rancher](examples/aks-rancher/README.md)         | Create an AKS cluster and install Rancher on it
-[outscale-volume](examples/outscale-volume/README.md) | Create a volume on Outscale Cloud
+Name                                                                       | Reason
+---------------------------------------------------------------------------|------------------------------------------------
+[aks-rancher](examples/aks-rancher/README.md)                              | Create an AKS cluster and install Rancher on it
+[outscale-rancher-quickstart](examples/outscale-vm-rke2-rancher/README.md) | Rancher quickstart on Outscale Cloud
+[outscale-volume](examples/outscale-volume/README.md)                      | Create a volume on Outscale Cloud
