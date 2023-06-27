@@ -14,10 +14,6 @@ resource "helm_release" "cert_manager" {
 # https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/installation-references/helm-chart-options
 # https://github.com/rancher/rancher/blob/release/v2.7/chart/values.yaml
 resource "helm_release" "rancher_server" {
-  depends_on = [
-    helm_release.cert_manager
-  ]
-
   name             = "rancher"
   chart            = "${var.rancher_helm_repository}/rancher-${var.rancher_version}.tgz"
   namespace        = "cattle-system"
@@ -39,8 +35,18 @@ resource "helm_release" "rancher_server" {
     value = "false"
   }
 
-  set {
-    name  = "bootstrapPassword"
-    value = "admin" # TODO: change this once the terraform provider has been updated with the new pw bootstrap logic
-  }
+  # set {
+  #   name  = "bootstrapPassword"
+  #   value = "admin"
+  # }
+
+  depends_on = [helm_release.cert_manager]
+}
+
+resource "rancher2_bootstrap" "admin" {
+  provider  = rancher2.bootstrap
+  password  = var.admin_password
+  telemetry = true
+
+  depends_on = [helm_release.rancher_server]
 }

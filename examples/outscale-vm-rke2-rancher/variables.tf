@@ -4,14 +4,12 @@ variable "cert_manager_version" {
   default     = "1.10.0"
 }
 
-# see https://docs.outscale.com/en/userguide/Instance-Types.html
 variable "instance_type" {
   type        = string
   description = "Instance type used for all VM"
   default     = "tinav3.c4r8p2"
 }
 
-# see https://docs.outscale.com/en/userguide/Official-OMIs-Reference.html
 variable "omi" {
   type        = string
   description = "Outscale machine Image to use for all instances"
@@ -30,7 +28,6 @@ variable "rancher_helm_repository" {
   default     = "https://releases.rancher.com/server-charts/latest"
 }
 
-# see https://github.com/k3s-io/k3s/releases
 variable "rancher_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for Rancher server cluster"
@@ -48,7 +45,6 @@ variable "rancher_version" {
   default     = "2.7.3"
 }
 
-# see https://github.com/rancher/rke2/releases
 variable "workload_kubernetes_version" {
   type        = string
   description = "Kubernetes version to use for managed workload cluster"

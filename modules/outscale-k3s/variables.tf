@@ -12,7 +12,7 @@ variable "kubernetes_version" {
 
 variable "node_username" {
   type        = string
-  description = "Username used for SSH access to the Rancher server cluster node"
+  description = "Username used for SSH access to the Kubernetes cluster node"
 }
 
 variable "omi" {
@@ -29,10 +29,10 @@ variable "prefix" {
 
 variable "ssh_private_key_pem" {
   type        = string
-  description = "Private key used for SSH access to the Rancher server cluster node"
+  description = "Private key used for SSH access to the Kubernetes cluster node"
 }
 
 variable "ssh_public_key" {
   type        = string
-  description = "SSH public key"
+  description = "SSH public key for SSH access to the Kubernetes cluster node"
 }

@@ -10,28 +10,33 @@ terraform {
       source  = "outscale/outscale"
       version = "0.9.1"
     }
+    # https://github.com/rancher/terraform-provider-rancher2
+    rancher2 = {
+      source  = "rancher/rancher2"
+      version = "3.0.0"
+    }
   }
 }
 
-# provider "helm" {
-#   kubernetes {
-#     config_path = local_file.kube_config_server_yaml.filename
-#   }
-# }
+provider "helm" {
+  kubernetes {
+    config_path = module.outscale_k3s.kubeconfig_local_file
+  }
+}
 
 provider "outscale" {
 }
 
-# provider "rancher2" {
-#   alias     = "bootstrap"
-#   api_url   = "https://${var.rancher_server_dns}"
-#   insecure  = true
-#   bootstrap = true
-# }
+provider "rancher2" {
+  alias     = "bootstrap"
+  api_url   = join(".", ["https://rancher", module.outscale_k3s.k3s_node_public_ip , "sslip.io"])
+  insecure  = true
+  bootstrap = true
+}
 
 # provider "rancher2" {
 #   alias     = "admin"
-#   api_url   = "https://${var.rancher_server_dns}"
+#   api_url   = join(".", ["https://rancher", module.outscale_k3s.k3s_node_public_ip , "sslip.io"])
 #   insecure  = true
 #   token_key = rancher2_bootstrap.admin.token
 #   timeout   = "300s"

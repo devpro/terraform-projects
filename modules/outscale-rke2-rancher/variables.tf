@@ -1,14 +1,3 @@
-variable "admin_password" {
-  type        = string
-  description = "Admin password to use for Rancher server bootstrap, min. 12 characters"
-}
-
-variable "cert_manager_version" {
-  type        = string
-  description = "Version of cert-manager to install alongside Rancher (format: 0.0.0)"
-  default     = "1.10.0"
-}
-
 variable "instance_type" {
   type        = string
   description = "Instance type used for all VM"
@@ -17,7 +6,7 @@ variable "instance_type" {
 
 variable "node_username" {
   type        = string
-  description = "Username used for SSH access to the Rancher server cluster node"
+  description = "Username used for SSH access to the Kubernetes cluster node"
 }
 
 variable "omi" {
@@ -32,26 +21,24 @@ variable "prefix" {
   default     = "quickstart"
 }
 
-variable "rancher_helm_repository" {
-  type        = string
-  description = "The helm repository, where the Rancher helm chart is installed from"
-  default     = "https://releases.rancher.com/server-charts/latest"
-}
-
 variable "rancher_server_dns" {
   type        = string
   description = "DNS host name of the Rancher server"
 }
 
-variable "rancher_version" {
+variable "security_group_id" {
   type        = string
-  description = "Rancher server version (format v0.0.0)"
-  default     = "2.7.3"
+  description = "Security group IP"
+}
+
+variable "ssh_private_key_pem" {
+  type        = string
+  description = "Private key used for SSH access to the Kubernetes cluster node"
 }
 
 variable "ssh_public_key" {
   type        = string
-  description = "SSH public key"
+  description = "SSH public key for SSH access to the Kubernetes cluster node"
 }
 
 variable "workload_cluster_name" {

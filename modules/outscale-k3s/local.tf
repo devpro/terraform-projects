@@ -4,12 +4,12 @@ resource "local_file" "kube_config_server_yaml" {
 }
 
 resource "local_sensitive_file" "ssh_private_key_pem" {
-  filename        = "${path.module}/id_rsa"
+  filename        = "${path.root}/id_rsa"
   content         = var.ssh_private_key_pem
   file_permission = "0600"
 }
 
 resource "local_file" "ssh_public_key_openssh" {
-  filename = "${path.module}/id_rsa.pub"
+  filename = "${path.root}/id_rsa.pub"
   content  = var.ssh_public_key
 }
