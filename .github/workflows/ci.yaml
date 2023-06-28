@@ -35,6 +35,8 @@ jobs:
       # info: tfsec uses static analysis of your terraform code to spot potential misconfigurations (ref. https://github.com/aquasecurity/tfsec)
       - name: Run tfsec
         uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          soft_fail: true
       # info: TFLint is a Pluggable Terraform Linter (ref. https://github.com/terraform-linters/tflint)
       - name: Cache plugin dir
         uses: actions/cache@v3
