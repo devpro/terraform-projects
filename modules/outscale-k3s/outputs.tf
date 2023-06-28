@@ -5,7 +5,7 @@ output "install_k3s_output" {
 }
 
 output "k3s_node_public_ip" {
-  value = outscale_vm.rancher_server.public_ip
+  value = outscale_vm.k3s_node.public_ip
 }
 
 output "kubeconfig_local_file" {
@@ -13,5 +13,5 @@ output "kubeconfig_local_file" {
 }
 
 output "security_group_id" {
-  value = outscale_security_group.rancher_sg_allowall.security_group_id
+  value = outscale_security_group.allowall.security_group_id
 }

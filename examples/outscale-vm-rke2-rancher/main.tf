@@ -1,4 +1,5 @@
 locals {
+  creator       = "Rancher quickstart"
   node_username = "outscale"
 }
 
@@ -10,13 +11,14 @@ resource "tls_private_key" "global_key" {
 module "outscale_k3s" {
   source = "../../modules/outscale-k3s"
 
-  instance_type       = var.instance_type
+  creator             = local.creator
   kubernetes_version  = var.rancher_kubernetes_version
   node_username       = local.node_username
-  omi                 = var.omi
-  prefix              = var.prefix
+  resource_prefix     = var.prefix
   ssh_private_key_pem = tls_private_key.global_key.private_key_pem
   ssh_public_key      = tls_private_key.global_key.public_key_openssh
+  vm_image            = var.omi
+  vm_type             = var.instance_type
 }
 
 module "helm_rancher" {
