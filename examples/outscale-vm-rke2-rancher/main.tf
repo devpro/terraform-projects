@@ -25,7 +25,7 @@ module "helm_rancher" {
   admin_password          = var.rancher_server_admin_password
   cert_manager_version    = var.cert_manager_version
   rancher_helm_repository = var.rancher_helm_repository
-  rancher_server_dns      = join(".", ["https://rancher", module.outscale_k3s.k3s_node_public_ip, "sslip.io"])
+  rancher_server_dns      = join(".", ["rancher", module.outscale_k3s.k3s_node_public_ip, "sslip.io"])
   rancher_version         = var.rancher_version
 
   depends_on = [module.outscale_k3s]
