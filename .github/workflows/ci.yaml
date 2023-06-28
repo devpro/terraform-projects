@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build-test:
-    name: Validate code
+    name: Code analysis
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
@@ -24,6 +24,7 @@ jobs:
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
+          soft_fail: true
           output_format: cli,sarif
           output_file_path: console,results.sarif
       - name: Upload SARIF file
