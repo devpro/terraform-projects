@@ -1,6 +1,5 @@
 # creates RKE2 cluster (ref. https://registry.terraform.io/providers/rancher/rancher2/latest/docs/resources/cluster_v2)
 resource "rancher2_cluster_v2" "quickstart_workload" {
-  provider           = rancher2.admin
   name               = var.workload_cluster_name
   kubernetes_version = var.workload_kubernetes_version
 }
@@ -20,7 +19,7 @@ resource "outscale_vm" "quickstart_node" {
   security_group_ids = [var.security_group_id]
 
   user_data = base64encode(templatefile(
-    join("/", [path.module, "files/userdata_quickstart_node.template"]),
+    join("/", [path.module, "files/userdata_node.template"]),
     {
       username         = var.node_username
       register_command = rancher2_cluster_v2.quickstart_workload.cluster_registration_token.0.insecure_node_command

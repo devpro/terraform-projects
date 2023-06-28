@@ -21,11 +21,6 @@ variable "prefix" {
   default     = "quickstart"
 }
 
-variable "rancher_server_dns" {
-  type        = string
-  description = "DNS host name of the Rancher server"
-}
-
 variable "security_group_id" {
   type        = string
   description = "Security group IP"

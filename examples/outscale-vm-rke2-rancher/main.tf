@@ -37,13 +37,22 @@ module "helm_rancher" {
   }
 }
 
-# module "outscale_vm_rke2_rancher" {
-#   source = "../../modules/outscale-vm-rke2-rancher"
+module "outscale_rancher_rke2" {
+  source = "../../modules/outscale-rancher-rke2"
 
-#   instance_type               = var.instance_type
-#   omi                         = var.omi
-#   prefix                      = var.prefix
-#   workload_cluster_name       = "quickstart-outscale-custom"
-#   workload_kubernetes_version = var.workload_kubernetes_version
-#   ssh_public_key = tls_private_key.global_key.public_key_openssh
-# }
+  instance_type               = var.instance_type
+  node_username               = local.node_username
+  omi                         = var.omi
+  prefix                      = var.prefix
+  security_group_id           = module.outscale_k3s.security_group_id
+  ssh_private_key_pem         = tls_private_key.global_key.private_key_pem
+  ssh_public_key              = tls_private_key.global_key.public_key_openssh
+  workload_cluster_name       = "quickstart-outscale-custom"
+  workload_kubernetes_version = var.workload_kubernetes_version
+
+  depends_on = [module.helm_rancher]
+
+  providers = {
+    rancher2 = rancher2.admin
+  }
+}
