@@ -13,6 +13,8 @@ concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
+permissions: read-all
+
 jobs:
   build-test:
     name: Code analysis
@@ -37,7 +39,7 @@ jobs:
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
           soft_fail: true
-      # info: TFLint is a Pluggable Terraform Linter (ref. https://github.com/terraform-linters/tflint)
+      # info: TFLint is a pluggable terraform linter (ref. https://github.com/terraform-linters/tflint)
       - name: Cache plugin dir
         uses: actions/cache@v3
         with:
@@ -54,4 +56,4 @@ jobs:
           # tip: avoids rate limiting (ref. https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting)
           GITHUB_TOKEN: ${{ github.token }}
       - name: Run TFLint
-        run: tflint -f compact
+        run: tflint --recursive --format compact

@@ -2,15 +2,15 @@
 
 ## How to provide feedback
 
-_TL;DR_ Create Issues
+_TL;DR_ Create Issues on this repository
 
 ## How to promote
 
-_TL;DR_ Share on the social media
+_TL;DR_ Share on social media
 
-## How to update the codebase
+## How to make a code change
 
-_TL;DR_ Fork the repository and create Pull Requests.
+_TL;DR_ Fork this repository and create Pull Requests
 
 ### Conventions
 
@@ -23,6 +23,19 @@ _TL;DR_ Fork the repository and create Pull Requests.
   * [Best practices for using Terraform](https://cloud.google.com/docs/terraform/best-practices-for-terraform)
 
 See also [terraform-best-practices.com](https://www.terraform-best-practices.com/)
+
+### Code analysis
+
+```bash
+# runs Checkov
+docker run --tty --rm --volume $(pwd):/tf --workdir /tf bridgecrew/checkov --directory /tf
+
+# runs tfsec
+docker run --rm -it -v "$(pwd):/src" aquasec/tfsec /src
+
+# runs TFLint
+docker run --rm -v $(pwd):/data -it ghcr.io/terraform-linters/tflint --recursive
+```
 
 ### Inspirations
 
@@ -41,13 +54,23 @@ See also [terraform-best-practices.com](https://www.terraform-best-practices.com
 * [hashicorp/terraform-provider-kubernetes](https://github.com/hashicorp/terraform-provider-kubernetes)
 * [linode/terraform-linode-k8s](https://github.com/linode/terraform-linode-k8s)
 * [monterail/terraform-bootstrap-example](https://github.com/monterail/terraform-bootstrap-example)
+* [outscale/osc-k8s-rke-cluster](https://github.com/outscale/osc-k8s-rke-cluster)
 * [rancher/quickstart](https://github.com/rancher/quickstart)
 * [shuaibiyy/awesome-terraform](https://github.com/shuaibiyy/awesome-terraform)
 * [terraform-aws-modules/terraform-aws-s3-bucket](https://github.com/terraform-aws-modules/terraform-aws-s3-bucket)
 * [terraform-google-modules/terraform-google-log-export](https://github.com/terraform-google-modules/terraform-google-log-export)
 * [terraform-google-modules/terraform-google-project-factory](https://github.com/terraform-google-modules/terraform-google-project-factory)
 
-### Additional tools
+### Additional tools to look at
+
+* [config-lint](https://stelligent.github.io/config-lint/)
+
+```bash
+alias config-lint="docker run -it -v $(pwd):/src stelligent/config-lint"
+config-lint -terraform /src
+```
 
 * [terraform-docs](https://terraform-docs.io/)
+* [terraform-compliance](https://terraform-compliance.com/)
 * [Terragrunt](https://terragrunt.gruntwork.io/) ([code](https://github.com/terraform-docs/terraform-docs))
+* [Terratest](https://github.com/gruntwork-io/terratest)
