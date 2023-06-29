@@ -41,7 +41,9 @@ alias tfsec="docker run --rm -it -v "$(pwd):/src" aquasec/tfsec"
 tfsec /src
 
 # runs TFLint (ref. https://github.com/terraform-linters/tflint)
-alias tflint="docker run --rm -v $(pwd):/data -it ghcr.io/terraform-linters/tflint"
+md .tflint.d
+alias tflint="docker run --rm -v $(pwd):/data -v $(pwd)/.tflint.d:/root/.tflint.d -it ghcr.io/terraform-linters/tflint"
+tflint --recursive --init
 tflint --recursive
 ```
 

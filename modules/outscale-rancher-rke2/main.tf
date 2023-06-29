@@ -22,7 +22,7 @@ resource "outscale_vm" "quickstart_node" {
     join("/", [path.module, "files/userdata_node.template"]),
     {
       username         = var.node_username
-      register_command = rancher2_cluster_v2.quickstart_workload.cluster_registration_token.0.insecure_node_command
+      register_command = rancher2_cluster_v2.quickstart_workload.cluster_registration_token[0].insecure_node_command
       # hint: insecure_windows_node_command for Windows
     }
   ))

@@ -21,3 +21,6 @@ setenv.bat
 id_rsa
 id_rsa.pub
 kube*.yaml
+
+# TFLint plugin directory
+.tflint.d
