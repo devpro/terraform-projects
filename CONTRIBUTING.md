@@ -26,15 +26,23 @@ See also [terraform-best-practices.com](https://www.terraform-best-practices.com
 
 ### Code analysis
 
+This checks will be done in the [CI pipeline](.github/workflows/ci.yaml) but it's always good to check code quality before committing.
+
 ```bash
-# runs Checkov
-docker run --tty --rm --volume $(pwd):/tf --workdir /tf bridgecrew/checkov --directory /tf
+# checks format (ref. https://developer.hashicorp.com/terraform/cli/commands/fmt)
+terraform fmt -recursive -check
 
-# runs tfsec
-docker run --rm -it -v "$(pwd):/src" aquasec/tfsec /src
+# runs Checkov (ref. https://www.checkov.io/)
+alias checkov="docker run -it --rm --volume $(pwd):/src --workdir /src bridgecrew/checkov"
+checkov --directory /src
 
-# runs TFLint
-docker run --rm -v $(pwd):/data -it ghcr.io/terraform-linters/tflint --recursive
+# runs tfsec (ref. https://github.com/aquasecurity/tfsec)
+alias tfsec="docker run --rm -it -v "$(pwd):/src" aquasec/tfsec"
+tfsec /src
+
+# runs TFLint (ref. https://github.com/terraform-linters/tflint)
+alias tflint="docker run --rm -v $(pwd):/data -it ghcr.io/terraform-linters/tflint"
+tflint --recursive
 ```
 
 ### Inspirations

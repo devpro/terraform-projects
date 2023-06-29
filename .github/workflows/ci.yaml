@@ -22,6 +22,10 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
+      - name: Install terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Check Terraform format
+        run: terraform fmt -recursive -check
       # info: Checkov is a static code analysis tool for infrastructure as code (IaC) and also a software composition analysis (SCA) tool for images and open source packages (ref. https://github.com/bridgecrewio/checkov)
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@v12
