@@ -42,8 +42,8 @@ resource "helm_release" "rancher_server" {
 # configures first login (ref. https://registry.terraform.io/providers/rancher/rancher2/latest/docs/resources/bootstrap)
 resource "rancher2_bootstrap" "admin" {
   initial_password = "admin"
-  password  = var.admin_password
-  telemetry = true
+  password         = var.admin_password
+  telemetry        = true
 
   depends_on = [helm_release.rancher_server]
 }

@@ -1,5 +1,5 @@
 resource "outscale_keypair" "default" {
-  keypair_name = "${var.resource_prefix}"
+  keypair_name = var.resource_prefix
   public_key   = var.ssh_public_key
 }
 
