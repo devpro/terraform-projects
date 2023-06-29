@@ -17,7 +17,6 @@ variable "cert_manager_version" {
 variable "kube_api_access_authorized_ips" {
   description = "Authorized IP ranges to access Kubernetes API server"
   type        = list(string)
-  default     = ["127.0.0.1/32"]
 }
 
 variable "node_count" {

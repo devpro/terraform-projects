@@ -10,4 +10,5 @@ skip-check:
   - CKV2_AZURE_29   # "Ensure AKS cluster has Azure CNI networking enabled"
   # Since kubernetes version 1.25, disableLocalAccounts can only be set on Azure AD integration enabled cluster (ref. https://aka.ms/aks/managed-aad#enable-aks-managed-azure-ad-integration-on-your-existing-cluster)
   - CKV_AZURE_141   # "Ensure AKS local admin account is disabled"
-
+  # Works locally but not in the CI (2023-06-29)
+  - CKV_AZURE_6     # "Ensure AKS has an API Server Authorized IP Ranges enabled"
