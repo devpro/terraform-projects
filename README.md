@@ -1,5 +1,7 @@
 # Terraform projects
 
+[![CI](https://github.com/devpro/terraform-projects/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/devpro/terraform-projects/actions/workflows/ci.yaml)
+
 Infrastructure automation projects leveraging [Terraform](https://www.terraform.io/).
 
 💡 See [how you can contribute](CONTRIBUTING.md). Any help will be appreciated!

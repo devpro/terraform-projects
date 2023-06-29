@@ -21,13 +21,27 @@ provider "helm" {
 
 * [Run Terraform commands](../../docs/terraform-cli.md#run-commands)
 
-## Variables
+## Input variables
 
-TODO
+Name                             | Mandatory | Description
+---------------------------------|-----------|--------------------------------------------------------------------------
+`azure_location`                 | True      | Location of the Azure datacenter
+`azure_vm_size`                  | True      | Azure VM size
+`cert_manager_version`           | False     | Version of cert-manager to install on the cluster (mandatory for Rancher)
+`kube_api_access_authorized_ips` | True      | Authorized IP ranges to access Kubernetes API server
+`node_count`                     | True      | AKS node count (pool of worker nodes)
+`rancher_version`                | False     | Version of rancher to install on the cluster
+`resource_suffix`                | True      | Resource name suffix
+`resource_tags`                  | False     | List of tags (key => value) to create on resources
 
 ## Outputs
 
-TODO
+Name                 | Value
+---------------------|-------------------
+`client_certificate` | Client certificate
+`kube_config`        | Kubernetes config
+`load_balancer_ip`   | Load balancer IP
+`rancher_host`       | Rancher host
 
 ## Examples
 

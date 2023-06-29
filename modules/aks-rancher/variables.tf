@@ -3,9 +3,20 @@ variable "azure_location" {
   type        = string
 }
 
-variable "resource_suffix" {
-  description = "Resource name suffix"
+variable "azure_vm_size" {
+  description = "Azure VM size"
   type        = string
+}
+
+variable "cert_manager_version" {
+  description = "Version of cert-manager to install on the cluster (mandatory for Rancher)"
+  type        = string
+  default     = "1.11.0"
+}
+
+variable "kube_api_access_authorized_ips" {
+  description = "Authorized IP ranges to access Kubernetes API server"
+  type        = list(string)
 }
 
 variable "node_count" {
@@ -13,8 +24,14 @@ variable "node_count" {
   type        = string
 }
 
-variable "azure_vm_size" {
-  description = "Azure VM size"
+variable "rancher_version" {
+  description = "Version of rancher to install on the cluster"
+  type        = string
+  default     = "2.7.4"
+}
+
+variable "resource_suffix" {
+  description = "Resource name suffix"
   type        = string
 }
 
@@ -29,15 +46,3 @@ variable "resource_tags" {
 #   type        = list(string)
 #   default     = ["Cost Center", "Department", "Finance Business Partner", "General Ledger Code", "Group", "Owner", "Stakeholder"]
 # }
-
-variable "cert_manager_version" {
-  description = "Version of cert-manager to install on the cluster (mandatory for Rancher)"
-  type        = string
-  default     = "1.11.0"
-}
-
-variable "rancher_version" {
-  description = "Version of rancher to install on the cluster"
-  type        = string
-  default     = "2.7.4"
-}

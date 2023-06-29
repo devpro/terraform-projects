@@ -1,0 +1,13 @@
+skip-check: 
+  - CKV_AZURE_7     # "Ensure AKS cluster has Network Policy configured"
+  - CKV_AZURE_168   # "Ensure Azure Kubernetes Cluster (AKS) nodes should use a minimum number of 50 pods."
+  - CKV_AZURE_172   # "Ensure autorotation of Secrets Store CSI Driver secrets for AKS clusters"
+  - CKV_AZURE_117   # "Ensure that AKS uses disk encryption set"
+  - CKV_AZURE_115   # "Ensure that AKS enables private clusters"
+  - CKV_AZURE_4     # "Ensure AKS logging to Azure Monitoring is Configured"
+  - CKV_AZURE_116   # "Ensure that AKS uses Azure Policies Add-on"
+  - CKV_AZURE_170   # "Ensure that AKS use the Paid Sku for its SLA"
+  - CKV2_AZURE_29   # "Ensure AKS cluster has Azure CNI networking enabled"
+  # Since kubernetes version 1.25, disableLocalAccounts can only be set on Azure AD integration enabled cluster (ref. https://aka.ms/aks/managed-aad#enable-aks-managed-azure-ad-integration-on-your-existing-cluster)
+  - CKV_AZURE_141   # "Ensure AKS local admin account is disabled"
+

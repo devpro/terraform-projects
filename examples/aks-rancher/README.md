@@ -11,10 +11,11 @@ This project will create a Kubernetes cluster managed by Azure and install Ranch
 * [Set Terraform input variables](../../docs/terraform-cli.md#configure-input-variables)
 
 Name                    | Required | Reason
-------------------------|----------|---------------------------------------------
+------------------------|----------|-----------------------------------------------------------
+`admin_ip_ranges`       | True     | IP ranges used by administrators (example: ["1.2.3.4/32"])
+`aks_node_count`        | False    | Number of AKS worker nodes
 `azure_location`        | False    | Azure data center location for the resources
 `azure_resource_suffix` | False    | Suffix used in Azure resources
-`aks_node_count`        | False    | Number of AKS worker nodes
 `azure_vm_size`         | False    | Azure Virtual Machine size
 
 * [Run Terraform commands](../../docs/terraform-cli.md#run-commands)

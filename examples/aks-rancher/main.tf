@@ -1,3 +1,14 @@
+variable "admin_ip_ranges" {
+  description = "IP ranges used by administrators"
+  type        = list(string)
+}
+
+variable "aks_node_count" {
+  description = "Number of AKS workder nodes"
+  type        = number
+  default     = 1
+}
+
 variable "azure_location" {
   description = "Location of the Azure datacenter"
   type        = string
@@ -8,12 +19,6 @@ variable "azure_resource_suffix" {
   description = "Resource name suffix"
   type        = string
   default     = "sample-12345"
-}
-
-variable "aks_node_count" {
-  description = "Number of AKS workder nodes"
-  type        = number
-  default     = 1
 }
 
 variable "azure_vm_size" {
@@ -35,10 +40,11 @@ data "azurerm_kubernetes_cluster" "management" {
 module "aks-rancher" {
   source = "../../modules/aks-rancher"
 
-  azure_location  = var.azure_location
-  resource_suffix = var.azure_resource_suffix
-  node_count      = var.aks_node_count
-  azure_vm_size   = var.azure_vm_size
+  azure_location                 = var.azure_location
+  resource_suffix                = var.azure_resource_suffix
+  node_count                     = var.aks_node_count
+  azure_vm_size                  = var.azure_vm_size
+  kube_api_access_authorized_ips = var.admin_ip_ranges
 }
 
 output "aks_kube_config" {
@@ -46,6 +52,6 @@ output "aks_kube_config" {
   sensitive = true
 }
 
-output "rancher_host" {
-  value = module.aks-rancher.rancher_host
+output "rancher_url" {
+  value = "https://${module.aks-rancher.rancher_host}"
 }

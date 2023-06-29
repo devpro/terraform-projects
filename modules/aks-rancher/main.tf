@@ -1,3 +1,4 @@
+# creates an Azure Resource Group
 resource "azurerm_resource_group" "management" {
   name     = "rg-${var.resource_suffix}"
   location = var.azure_location
@@ -9,17 +10,27 @@ resource "azurerm_resource_group" "management" {
   }
 }
 
+# creates a AKS cluster (ref. https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster)
 resource "azurerm_kubernetes_cluster" "management" {
-  name                = "aks-${var.resource_suffix}"
-  location            = azurerm_resource_group.management.location
-  resource_group_name = azurerm_resource_group.management.name
-  dns_prefix          = "dns-${var.resource_suffix}"
-  tags                = var.resource_tags
+  name                      = "aks-${var.resource_suffix}"
+  location                  = azurerm_resource_group.management.location
+  resource_group_name       = azurerm_resource_group.management.name
+  dns_prefix                = "dns-${var.resource_suffix}"
+  tags                      = var.resource_tags
+  automatic_channel_upgrade = "stable"
 
   default_node_pool {
     name       = "default"
     node_count = var.node_count
     vm_size    = var.azure_vm_size
+  }
+
+  network_profile {
+    network_plugin = "kubenet"
+  }
+
+  api_server_access_profile {
+    authorized_ip_ranges = var.kube_api_access_authorized_ips
   }
 
   identity {
@@ -36,7 +47,7 @@ resource "azurerm_kubernetes_cluster" "management" {
   }
 }
 
-# https://github.com/kubernetes/ingress-nginx/tree/main/charts/ingress-nginx
+# installs NGINX Ingress Controller in the AKS cluster (ref. https://github.com/kubernetes/ingress-nginx/tree/main/charts/ingress-nginx)
 resource "helm_release" "ingress_nginx" {
   name             = "ingress-nginx"
   repository       = "https://kubernetes.github.io/ingress-nginx"
@@ -56,7 +67,7 @@ resource "helm_release" "ingress_nginx" {
   ]
 }
 
-# ref. https://github.com/cert-manager/cert-manager/tree/master/deploy/charts/cert-manager
+# installs cert-manager in the AKS cluster (ref. https://github.com/cert-manager/cert-manager/tree/master/deploy/charts/cert-manager)
 resource "helm_release" "cert_manager" {
   name             = "cert-manager"
   repository       = "https://charts.jetstack.io"
@@ -72,7 +83,7 @@ resource "helm_release" "cert_manager" {
   }
 }
 
-# ref. https://github.com/rancher/rancher/tree/release/v2.7/chart
+# installs Rancher in the AKS cluster (ref. https://github.com/rancher/rancher/tree/release/v2.7/chart)
 resource "helm_release" "rancher" {
   name             = "rancher"
   repository       = "https://releases.rancher.com/server-charts/stable"
