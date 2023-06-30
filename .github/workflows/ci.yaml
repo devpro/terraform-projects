@@ -25,7 +25,6 @@ jobs:
     name: Code analysis
     permissions:
       checks: write
-      id-token: read
       pull-requests: write
       security-events: write
       statuses: write
