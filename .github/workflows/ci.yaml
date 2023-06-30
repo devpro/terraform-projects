@@ -14,12 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  checks: write
-  id-token: read
-  pull-requests: write
-  repository-projects: read
-  security-events: write
-  statuses: write
+  contents: read
 
 jobs:
   # quality tools:
@@ -28,6 +23,12 @@ jobs:
   # - TFLint is a pluggable terraform linter (ref. https://github.com/terraform-linters/tflint)
   code-analysis:
     name: Code analysis
+    permissions:
+      checks: write
+      id-token: read
+      pull-requests: write
+      security-events: write
+      statuses: write
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
