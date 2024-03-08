@@ -71,6 +71,10 @@ tflint --recursive
 * [terraform-google-modules/terraform-google-log-export](https://github.com/terraform-google-modules/terraform-google-log-export)
 * [terraform-google-modules/terraform-google-project-factory](https://github.com/terraform-google-modules/terraform-google-project-factory)
 
+### Learning material
+
+* [terraformbyexample.com](https://www.terraformbyexample.com/)
+
 ### Additional tools to look at
 
 * [config-lint](https://stelligent.github.io/config-lint/)
