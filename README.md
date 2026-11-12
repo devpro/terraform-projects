@@ -18,8 +18,9 @@ Infrastructure automation projects leveraging [Terraform](https://www.terraform.
 ### General learning
 
 Name                                          | Reason
-----------------------------------------------|-------------------
+----------------------------------------------|---------------------------------------------
 [hello-world](examples/hello-world/README.md) | Hello world output
+[state-only](examples/state-only/README.md)   | State behaviour without any infrastructure
 
 ### Rancher
 

@@ -4,15 +4,15 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.61"
+      version = "~> 5.13"
     }
     helm = {
       source  = "hashicorp/helm"
-      version = "~> 2.10"
+      version = "~> 3.3"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "~> 2.21"
+      version = "~> 3.5"
     }
   }
 }
@@ -22,7 +22,7 @@ provider "azurerm" {
 }
 
 provider "helm" {
-  kubernetes {
+  kubernetes = {
     host                   = data.azurerm_kubernetes_cluster.management.kube_config[0].host
     client_certificate     = base64decode(data.azurerm_kubernetes_cluster.management.kube_config[0].client_certificate)
     client_key             = base64decode(data.azurerm_kubernetes_cluster.management.kube_config[0].client_key)

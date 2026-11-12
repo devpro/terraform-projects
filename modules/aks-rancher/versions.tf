@@ -5,17 +5,17 @@ terraform {
     # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.61.0"
+      version = "5.13.0"
     }
     # https://registry.terraform.io/providers/hashicorp/helm/latest/docs
     helm = {
       source  = "hashicorp/helm"
-      version = "2.10.1"
+      version = "3.3.0"
     }
     # https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.21.1"
+      version = "3.5.0"
     }
   }
 }

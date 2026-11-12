@@ -17,12 +17,17 @@ resource "azurerm_kubernetes_cluster" "management" {
   resource_group_name       = azurerm_resource_group.management.name
   dns_prefix                = "dns-${var.resource_suffix}"
   tags                      = var.resource_tags
-  automatic_channel_upgrade = "stable"
+  automatic_upgrade_channel = "stable"
 
   default_node_pool {
     name       = "default"
     node_count = var.node_count
     vm_size    = var.azure_vm_size
+  }
+
+  # Required since azurerm 5, manual mode keeps node pools as declared rather than provisioned by Azure.
+  node_provisioning_profile {
+    mode = "Manual"
   }
 
   network_profile {
@@ -57,10 +62,12 @@ resource "helm_release" "ingress_nginx" {
   wait             = true
 
   # fix: AKS with Kubernetes 1.24+ issue with Ingresses not accessible (ref. https://stackoverflow.com/questions/75247903/aks-ingress-nginx-ingress-controller-failing-to-route-by-host)
-  set {
-    name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
-    value = "/healthz"
-  }
+  set = [
+    {
+      name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
+      value = "/healthz"
+    },
+  ]
 
   depends_on = [
     azurerm_kubernetes_cluster.management
@@ -77,10 +84,12 @@ resource "helm_release" "cert_manager" {
   create_namespace = true
   wait             = true
 
-  set {
-    name  = "installCRDs"
-    value = "true"
-  }
+  set = [
+    {
+      name  = "installCRDs"
+      value = "true"
+    },
+  ]
 }
 
 # installs Rancher in the AKS cluster (ref. https://github.com/rancher/rancher/tree/release/v2.7/chart)
@@ -92,30 +101,28 @@ resource "helm_release" "rancher" {
   namespace        = "cattle-system"
   create_namespace = true
 
-  set {
-    name  = "hostname"
-    value = join(".", ["rancher", data.kubernetes_service.ingress_nginx_controller.status[0].load_balancer[0].ingress[0].ip, "sslip.io"])
-  }
-
-  set {
-    name  = "ingress.ingressClassName"
-    value = "nginx"
-  }
-
-  set {
-    name  = "replicas"
-    value = "1"
-  }
-
-  set {
-    name  = "global.cattle.psp.enabled"
-    value = "false"
-  }
-
-  set {
-    name  = "bootstrapPassword"
-    value = "admin"
-  }
+  set = [
+    {
+      name  = "hostname"
+      value = join(".", ["rancher", data.kubernetes_service_v1.ingress_nginx_controller.status[0].load_balancer[0].ingress[0].ip, "sslip.io"])
+    },
+    {
+      name  = "ingress.ingressClassName"
+      value = "nginx"
+    },
+    {
+      name  = "replicas"
+      value = "1"
+    },
+    {
+      name  = "global.cattle.psp.enabled"
+      value = "false"
+    },
+    {
+      name  = "bootstrapPassword"
+      value = "admin"
+    },
+  ]
 
   depends_on = [
     helm_release.cert_manager,

@@ -7,9 +7,9 @@ output "kube_config" {
 }
 
 output "load_balancer_ip" {
-  value = data.kubernetes_service.ingress_nginx_controller.status[0].load_balancer[0].ingress[0].ip
+  value = data.kubernetes_service_v1.ingress_nginx_controller.status[0].load_balancer[0].ingress[0].ip
 }
 
 output "rancher_host" {
-  value = join(".", ["rancher", data.kubernetes_service.ingress_nginx_controller.status[0].load_balancer[0].ingress[0].ip, "sslip.io"])
+  value = join(".", ["rancher", data.kubernetes_service_v1.ingress_nginx_controller.status[0].load_balancer[0].ingress[0].ip, "sslip.io"])
 }
