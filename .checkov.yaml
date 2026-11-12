@@ -1,4 +1,4 @@
-skip-check: 
+skip-check:
   - CKV_AZURE_7     # "Ensure AKS cluster has Network Policy configured"
   - CKV_AZURE_168   # "Ensure Azure Kubernetes Cluster (AKS) nodes should use a minimum number of 50 pods."
   - CKV_AZURE_172   # "Ensure autorotation of Secrets Store CSI Driver secrets for AKS clusters"
