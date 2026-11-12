@@ -1,5 +1,12 @@
 terraform {
+  required_version = ">= 1.1.0"
+
   required_providers {
+    # https://github.com/hashicorp/terraform-provider-helm
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.5"
+    }
     # https://github.com/hashicorp/terraform-provider-tls
     tls = {
       source  = "hashicorp/tls"
