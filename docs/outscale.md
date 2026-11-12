@@ -2,7 +2,8 @@
 
 ## Set environment variables
 
-Set the following environment variables (replace with the right AK/SK) so that Terraform Outscale provider can execute against Outscale Cloud (ref. [docs](https://registry.terraform.io/providers/outscale/outscale/latest/docs#environment-variables)).
+Set the following environment variables (replace with the right AK/SK) so that Terraform Outscale provider can execute against Outscale Cloud
+(ref. [docs](https://registry.terraform.io/providers/outscale/outscale/latest/docs#environment-variables)).
 
 For Linux systems:
 

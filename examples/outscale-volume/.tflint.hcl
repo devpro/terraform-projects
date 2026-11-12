@@ -1,5 +1,5 @@
 config {
-  module = false
+  call_module_type = "none"
 }
 
 rule "terraform_required_version" {

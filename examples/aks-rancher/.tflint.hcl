@@ -1,6 +1,6 @@
 config {
-  module     = false
-  plugin_dir = "~/.tflint.d/plugins"
+  call_module_type = "none"
+  plugin_dir       = "~/.tflint.d/plugins"
 }
 
 plugin "azurerm" {
