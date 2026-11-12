@@ -4,7 +4,7 @@ resource "docker_image" "nginx" {
 }
 
 resource "docker_container" "nginx" {
-  name = "${var.container_name}-${count.index+1}"
+  name  = "${var.container_name}-${count.index + 1}"
   count = var.container_count
   image = docker_image.nginx.image_id
   ports {

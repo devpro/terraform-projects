@@ -1,6 +1,6 @@
 output "container_id" {
   description = "ID of the Docker container"
-  value       = [ for container in docker_container.nginx : container.id ]
+  value       = [for container in docker_container.nginx : container.id]
 }
 
 output "image_id" {

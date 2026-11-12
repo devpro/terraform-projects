@@ -4,7 +4,7 @@ terraform {
   # https://registry.terraform.io/providers/kreuzwerker/docker/latest
   required_providers {
     docker = {
-      source = "kreuzwerker/docker"
+      source  = "kreuzwerker/docker"
       version = "~> 3.0.1"
     }
   }
