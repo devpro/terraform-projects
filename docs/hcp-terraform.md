@@ -1,7 +1,9 @@
 # HCP Terraform
 
 [HCP Terraform](https://developer.hashicorp.com/terraform/cloud-docs) stores the state and runs plans and applies on a remote runner.
+
 Any example runs there unchanged, as the connection is set outside the configuration.
+
 [state-only](../examples/state-only/README.md) needs no credentials, so it suits a first try on the free plan.
 
 ## Execution
