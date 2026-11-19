@@ -20,10 +20,10 @@ permissions:
 jobs:
   markup-lint:
     name: Markup
-    uses: devpro/github-workflow-parts/.github/workflows/reusable-markup-lint.yml@398cf79719f90e41e3407bc9f060e297629d800d
+    uses: devpro/github-workflow-parts/.github/workflows/reusable-markup-lint.yml@d91ef67d46ca6d756055bdd1b8f9c65182bdad23
 
   terraform-quality:
     name: Terraform
-    uses: devpro/github-workflow-parts/.github/workflows/reusable-terraform-quality.yml@398cf79719f90e41e3407bc9f060e297629d800d
+    uses: devpro/github-workflow-parts/.github/workflows/reusable-terraform-quality.yml@d91ef67d46ca6d756055bdd1b8f9c65182bdad23
     with:
-      workflow-parts-version: 398cf79719f90e41e3407bc9f060e297629d800d
+      workflow-parts-version: d91ef67d46ca6d756055bdd1b8f9c65182bdad23
