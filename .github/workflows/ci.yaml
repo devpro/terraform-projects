@@ -1,68 +1,29 @@
-# title: Continuous Integration pipeline
-
 name: CI
+# title: Continuous Integration pipeline
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   pull_request:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch: {}
 
 concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}
+  group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  # quality tools:
-  # - Checkov is a static code analysis tool for infrastructure as code (IaC) and also a software composition analysis (SCA) tool for images and open source packages (ref. https://github.com/bridgecrewio/checkov)
-  # - tfsec uses static analysis of your terraform code to spot potential misconfigurations (ref. https://github.com/aquasecurity/tfsec)
-  # - TFLint is a pluggable terraform linter (ref. https://github.com/terraform-linters/tflint)
-  code-analysis:
-    name: Code analysis
-    permissions:
-      checks: write
-      pull-requests: write
-      security-events: write
-      statuses: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v3
-      - name: Install terraform
-        uses: hashicorp/setup-terraform@v2
-      - name: Check Terraform format
-        run: terraform fmt -recursive -check
-      - name: Run Checkov
-        uses: bridgecrewio/checkov-action@v12
-        with:
-          soft_fail: true
-          output_format: cli,sarif
-          output_file_path: console,results.sarif
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v2
-        if: success() || failure()
-        with:
-          sarif_file: results.sarif
-      - name: Run tfsec
-        uses: aquasecurity/tfsec-action@v1.0.3
-        with:
-          soft_fail: true
-      - name: Cache plugin dir
-        uses: actions/cache@v3
-        with:
-          path: ~/.tflint.d/plugins
-          key: tflint-${{ hashFiles('**/.tflint.hcl') }}
-      - name: Setup TFLint
-        uses: terraform-linters/setup-tflint@v3
-        with:
-          tflint_version: v0.47.0                       # ref. https://github.com/terraform-linters/tflint/pkgs/container/tflint
-      - name: Initialize TFLint
-        run: tflint --recursive --init
-        env:
-          GITHUB_TOKEN: ${{ github.token }}             # ref. https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
-      - name: Run TFLint
-        run: tflint --recursive --format compact
+  markup-lint:
+    name: Markup
+    uses: devpro/github-workflow-parts/.github/workflows/reusable-markup-lint.yml@d91ef67d46ca6d756055bdd1b8f9c65182bdad23
+
+  terraform-quality:
+    name: Terraform
+    uses: devpro/github-workflow-parts/.github/workflows/reusable-terraform-quality.yml@d91ef67d46ca6d756055bdd1b8f9c65182bdad23
+    with:
+      workflow-parts-version: d91ef67d46ca6d756055bdd1b8f9c65182bdad23

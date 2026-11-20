@@ -1,25 +1,32 @@
 terraform {
+  required_version = ">= 1.1.0"
+
   required_providers {
+    # https://github.com/hashicorp/terraform-provider-helm
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 3.3"
+    }
     # https://github.com/hashicorp/terraform-provider-tls
     tls = {
       source  = "hashicorp/tls"
-      version = "3.4.0"
+      version = "4.4.2"
     }
     # https://github.com/outscale/terraform-provider-outscale
     outscale = {
       source  = "outscale/outscale"
-      version = "0.9.1"
+      version = "1.8.1"
     }
     # https://github.com/rancher/terraform-provider-rancher2
     rancher2 = {
       source  = "rancher/rancher2"
-      version = "3.0.0"
+      version = "15.1.2"
     }
   }
 }
 
 provider "helm" {
-  kubernetes {
+  kubernetes = {
     config_path = module.outscale_k3s.kubeconfig_local_file
   }
 }

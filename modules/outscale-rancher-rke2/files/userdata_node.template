@@ -3,4 +3,6 @@
 sudo apt update
 sudo apt install -y curl
 
+# Terraform templatefile replaces register_command before the script runs.
+# shellcheck disable=SC2154
 ${register_command} --etcd --controlplane --worker

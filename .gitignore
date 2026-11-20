@@ -12,10 +12,10 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
-.terraform.lock.hcl
 
 # Local setup files
 setenv.bat
+.env
 
 # Output files
 id_rsa

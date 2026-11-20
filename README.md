@@ -15,8 +15,17 @@ Infrastructure automation projects leveraging [Terraform](https://www.terraform.
 
 ## Examples
 
+### General learning
+
+Name                                          | Reason
+----------------------------------------------|---------------------------------------------
+[hello-world](examples/hello-world/README.md) | Hello world output
+[state-only](examples/state-only/README.md)   | State behaviour without any infrastructure
+
+### Rancher
+
 Name                                                                       | Reason
 ---------------------------------------------------------------------------|---------------------------------------------------------------
-[aks-rancher](examples/aks-rancher/README.md)                              | Rancher quickstart on AKS
+[aks-rancher](examples/aks-rancher/README.md)                              | Rancher quickstart on AKS (Azure)
 [outscale-rancher-quickstart](examples/outscale-vm-rke2-rancher/README.md) | Rancher quickstart on Outscale Cloud (management + downstream)
 [outscale-volume](examples/outscale-volume/README.md)                      | Volume provisioning on Outscale Cloud

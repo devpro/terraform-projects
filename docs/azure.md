@@ -4,7 +4,8 @@
 
 A service principal, aka Azure AD Application, is used to authenticate a user.
 
-Execute the following commands and store the client ID and client secret (ref. [Azure Provider: Authenticating using a Service Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret)).
+Execute the following commands and store the client ID and client secret
+(ref. [Azure Provider: Authenticating using a Service Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret)).
 
 ```bash
 az login
@@ -13,7 +14,8 @@ az ad sp create-for-rbac --name "<myusername>-tf-may2023" --role="Contributor" -
 
 ## Set ARM environment variables
 
-Set the following environment variables (replace with values from the Service Principal) so that Terraform ARM provider can execute against Azure (ref. [Configuring the Service Principal in Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret#configuring-the-service-principal-in-terraform)).
+Set the following environment variables (replace with values from the Service Principal) so that Terraform ARM provider can execute against Azure
+(ref. [Configuring the Service Principal in Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret#configuring-the-service-principal-in-terraform)).
 
 For Linux systems:
 

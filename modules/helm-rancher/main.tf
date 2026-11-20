@@ -5,10 +5,12 @@ resource "helm_release" "cert_manager" {
   create_namespace = true
   wait             = true
 
-  set {
-    name  = "installCRDs"
-    value = "true"
-  }
+  set = [
+    {
+      name  = "installCRDs"
+      value = "true"
+    },
+  ]
 }
 
 resource "helm_release" "rancher_server" {
@@ -19,22 +21,24 @@ resource "helm_release" "rancher_server" {
   wait             = true
 
   # sets values (ref. https://ranchermanager.docs.rancher.com/getting-started/installation-and-upgrade/installation-references/helm-chart-options, https://github.com/rancher/rancher/blob/release/v2.7/chart/values.yaml)
-  set {
-    name  = "hostname"
-    value = var.rancher_server_dns
-  }
-  set {
-    name  = "replicas"
-    value = "1"
-  }
-  set {
-    name  = "global.cattle.psp.enabled"
-    value = "false"
-  }
-  set {
-    name  = "bootstrapPassword"
-    value = "admin"
-  }
+  set = [
+    {
+      name  = "hostname"
+      value = var.rancher_server_dns
+    },
+    {
+      name  = "replicas"
+      value = "1"
+    },
+    {
+      name  = "global.cattle.psp.enabled"
+      value = "false"
+    },
+    {
+      name  = "bootstrapPassword"
+      value = "admin"
+    },
+  ]
 
   depends_on = [helm_release.cert_manager]
 }
@@ -43,7 +47,6 @@ resource "helm_release" "rancher_server" {
 resource "rancher2_bootstrap" "admin" {
   initial_password = "admin"
   password         = var.admin_password
-  telemetry        = true
 
   depends_on = [helm_release.rancher_server]
 }
